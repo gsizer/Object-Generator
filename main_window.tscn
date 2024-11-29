@@ -112,15 +112,21 @@ layout_mode = 2
 alignment = 1
 
 [node name="btnRandom" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/hbControls"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 text = "Random"
 
 [node name="btnReset" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/hbControls"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 text = "Reset"
+
+[node name="btnCopy" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/hbControls"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Copy"
 
 [connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/hbItemName/leItemName" to="." method="_on_le_item_name_text_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/hbControls/btnRandom" to="." method="_on_btn_random_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/hbControls/btnReset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/hbControls/btnCopy" to="." method="_on_btn_copy_pressed"]

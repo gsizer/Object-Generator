@@ -68,3 +68,6 @@ func _on_btn_reset_pressed():
 	menuCategories.text = defaultText
 	menuDamageTypes.text = defaultText
 	rtDescription.text = ""
+
+func _on_btn_copy_pressed():
+	DisplayServer.clipboard_set(rtDescription.text)
