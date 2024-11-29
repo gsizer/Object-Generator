@@ -1,0 +1,126 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmytnb3a1wfok"]
+
+[ext_resource type="Script" path="res://main_window.gd" id="1_w7c3u"]
+
+[node name="MainWindow" type="Control" node_paths=PackedStringArray("lineItemName", "menuRarities", "menuCategories", "menuDamageTypes", "rtDescription")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7c3u")
+lineItemName = NodePath("PanelContainer/MarginContainer/VBoxContainer/hbItemName/leItemName")
+menuRarities = NodePath("PanelContainer/MarginContainer/VBoxContainer/hbRarity/mbRarity")
+menuCategories = NodePath("PanelContainer/MarginContainer/VBoxContainer/hbCategory/mbCategory")
+menuDamageTypes = NodePath("PanelContainer/MarginContainer/VBoxContainer/hbDamageType/mbDamageType")
+rtDescription = NodePath("PanelContainer/MarginContainer/VBoxContainer/hbDescription/rtDescription")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="hbItemName" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/hbItemName"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Name"
+
+[node name="leItemName" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/hbItemName"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Item Name"
+
+[node name="hbRarity" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/hbRarity"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Rarity"
+
+[node name="mbRarity" type="MenuButton" parent="PanelContainer/MarginContainer/VBoxContainer/hbRarity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select One"
+switch_on_hover = true
+
+[node name="hbCategory" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/hbCategory"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Category"
+
+[node name="mbCategory" type="MenuButton" parent="PanelContainer/MarginContainer/VBoxContainer/hbCategory"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select One"
+switch_on_hover = true
+
+[node name="hbDamageType" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/hbDamageType"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Damage"
+
+[node name="mbDamageType" type="MenuButton" parent="PanelContainer/MarginContainer/VBoxContainer/hbDamageType"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select One"
+switch_on_hover = true
+
+[node name="hbDescription" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/hbDescription"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "Description"
+
+[node name="rtDescription" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/hbDescription"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+
+[node name="hbControls" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="btnRandom" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/hbControls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Random"
+
+[node name="btnReset" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/hbControls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Reset"
+
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/hbItemName/leItemName" to="." method="_on_le_item_name_text_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/hbControls/btnRandom" to="." method="_on_btn_random_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/hbControls/btnReset" to="." method="_on_btn_reset_pressed"]
