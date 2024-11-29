@@ -2,7 +2,7 @@ extends Control
 
 var MenuConfig := ConfigFile.new()
 
-const defaultText := "Select One"
+const defaultText := "Select"
 
 const Colors : Array[Color] = [
 	Color.WEB_GRAY, Color.YELLOW, Color.GREEN, Color.BLUE,
@@ -20,6 +20,7 @@ const DamageTypes : Array[String] = [
 
 var FormatString : String = "A {R} {C} of {D}."
 var DescriptionString : String = ""
+var _selected : Array[int] = [0,0,0]
 
 @export var lineItemName : LineEdit
 var itemName : String
@@ -29,16 +30,29 @@ var btnRare : PopupMenu
 var btnCat : PopupMenu
 @export var menuDamageTypes : MenuButton
 var btnDmgType : PopupMenu
-@export var rtDescription : RichTextLabel
+@export var mdDescription : MarkdownLabel
+
+func update_description():
+	var r : String = Rarities[_selected[0]]
+	var c : String = Categories[_selected[1]]
+	var d : String = DamageTypes[_selected[2]]
+	DescriptionString = FormatString.format( { "R":r, "C":c, "D":d } )
+	mdDescription.text = DescriptionString
 
 func _on_btn_rare_select(id:int)->void:
 	menuRarities.text=Rarities[id]
+	_selected[0]=id
+	update_description()
 
 func _on_btn_cat_select(id:int)->void:
 	menuCategories.text=Categories[id]
+	_selected[1]=id
+	update_description()
 
 func _on_btn_dmgType_select(id:int)->void:
 	menuDamageTypes.text=DamageTypes[id]
+	_selected[2]=id
+	update_description()
 
 func _ready():
 	btnRare = menuRarities.get_popup()
@@ -56,6 +70,7 @@ func _ready():
 
 func _on_le_item_name_text_changed(new_text:String):
 	itemName = new_text.to_snake_case()
+	update_description()
 
 func _on_btn_random_pressed():
 	_on_btn_rare_select( randi_range(0, Rarities.size()-1) )
@@ -67,7 +82,7 @@ func _on_btn_reset_pressed():
 	menuRarities.text = defaultText
 	menuCategories.text = defaultText
 	menuDamageTypes.text = defaultText
-	rtDescription.text = ""
+	mdDescription.text = ""
 
 func _on_btn_copy_pressed():
-	DisplayServer.clipboard_set(rtDescription.text)
+	DisplayServer.clipboard_set(DescriptionString)
