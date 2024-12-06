@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="ObjectGenerator"
-run/main_scene="res://main_window.tscn"
+run/main_scene="res://object_generator.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=300
-window/size/viewport_height=400
+window/size/viewport_height=300
 
 [editor_plugins]
 
