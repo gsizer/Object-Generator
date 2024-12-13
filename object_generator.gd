@@ -16,7 +16,7 @@ const Categories : Array[String] = [
 const DamageTypes : Array[String] = [
 	"Blunt", "Energy", "Piercing", "Slashing"]
 
-var FormatString : String = "[b]A [color={Co}]{R}[/color] {Ca} of {Dt}[/b]."
+var FormatString : String = "A(n) [color={Co}]{R}[/color] {Ca} of {Dt}."
 var DescriptionString : String = ""
 var _selected : Array[int] = [0,0,0]
 
@@ -76,7 +76,7 @@ func _on_btn_reset_pressed():
 
 func _on_btn_copy_pressed():
 	var clipboard : String = itemName+":"+DescriptionString
-	print_debug("Copied String to Clipboard:", clipboard)
+	print_debug("Copy to Clipboard:", clipboard)
 	DisplayServer.clipboard_set(clipboard)
 
 func _ready():
